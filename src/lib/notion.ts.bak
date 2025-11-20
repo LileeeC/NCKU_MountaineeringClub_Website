@@ -1,0 +1,19 @@
+// src/lib/notion.ts
+import { Client } from "@notionhq/client";
+
+// 1. 建立客戶端
+export const notionClient = new Client({
+  auth: process.env.NOTION_TOKEN,
+});
+
+// 2. 匯出資料庫 ID
+export const ROUTES_DB_ID = process.env.NOTION_ROUTES_DB_ID ?? "";
+export const LECTURES_DB_ID = process.env.NOTION_LECTURES_DB_ID ?? "";
+
+// 3. 檢查環境變數 (Debug 用)
+if (!process.env.NOTION_TOKEN) {
+  console.error("❌ 嚴重錯誤：找不到 NOTION_TOKEN，請檢查 .env.local");
+}
+if (!ROUTES_DB_ID) {
+  console.warn("⚠️ 警告：找不到 NOTION_ROUTES_DB_ID");
+}
